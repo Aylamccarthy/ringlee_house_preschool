@@ -17,84 +17,311 @@
 
     {% block corecss %}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lato:ital,wght@0,300;0,400;1,300&family=Poiret+One&family=Qwigley&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
     {% endblock %}
 
-    {% block corejs %}
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    {% endblock %}
-
-    {% block extra_js %}
-    {% endblock %}
-
-    <title>Ringlee House PreSchool{% block extra_title %}{% endblock %}</title>
+    <title>Ringlee House PreSchool {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    <header class="container-fluid fixed-top">
-      <div id="topnav"  class="row bg-white pt-lg-2 d-none d-lg-flex">
-          <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-              <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                  <h2 class="logo-font text-black my-0"><strong>Ringlee House</strong> <em> PreSchool</em> </h2>
-              </a>
-          </div>
-          <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-              <form method="GET" action="">
-                  <div class="input-group w-100">
-                      <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
-                      <div class="input-group-append">
-                          <button class="form-control btn btn-black border border-black rounded-0" type="submit">
-                              <span class="icon">
-                                  <i class="fas fa-search"></i>
-                              </span>
-                          </button>
-                      </div>
-                  </div>
-              </form>
-          </div>
-          <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-              <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                  <li class="list-inline-item dropdown">
-                      <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <div class="text-center">
-                              <div><i class="fas fa-user fa-lg"></i></div>
-                              <p class="my-0">My Account</p>
-                          </div>
-                      </a>
-                      <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                          {% if request.user.is_authenticated %}
-                              {% if request.user.is_superuser %}
-                                  <a href="" class="dropdown-item">Product Management</a>
-                              {% endif %}
-                              <a href="" class="dropdown-item">My Profile</a>
-                              <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                          {% else %}
-                              <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                              <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                          {% endif %}
-                      </div>
-                  </li>
-              </ul>
-          </div>
+    <!-- HEADER -->
+    <header>
+      <div class="col-12 col-md-6 mx-md-auto mb-md-2 mb-lg-0 col-lg-4 col-xl-3 pt-2 pt-lg-0">
+        <a class="logo d-flex d-lg-none justify-content-center justify-content-lg-start align-items-end mb-2 mb-md-0" href="{% url 'home' %}">
+          <img class="col-3 " src="{{ MEDIA_URL }}logo.webp" alt="logo image">
+          <h2>Ringlee House PreSchool</h2>  
+        </a>
       </div>
-  </header>
+      <div class="add-container bg-light d-lg-none mb-lg-2 ">
+        <div class="add container-fluid text-center"><p class="mx-auto">Free delivery on orders over €50</p></div>
+        <div class="add container-fluid text-center"><p class="mx-auto">Register and get a <span class="bg-skyblue">20% discount</span> voucher for your orders</p></div> 
+      </div>
+      <!-- Navigation links -->
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <button id="navbarTogglerButton" class="navbar-toggler bg-transparent" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars text-white"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+          <div class="container-fluid p-side">
+            <ul class="categories d-block d-lg-flex col-8 pl-lg-0">
+              <li class="nav-item mb-2 mb-lg-0 mr-3 mt-2 mt-lg-0">
+                <a href="{% url 'home' %}" id="navitem-home">Home</a>
+              </li>
+              <li class="nav-item mb-2 mb-lg-0  mr-3 mt-2 mt-lg-0">
+                <a href="#" id="navitem-about">About</a>
+              </li>
+              <li class="nav-item mb-2 mb-lg-0  mr-3 mt-2 mt-lg-0">
+                <a href="#" id="navitem-products">Services</a>
+              </li>
+              <li class="nav-item mb-2 mb-lg-0  mr-3 mt-2 mt-lg-0">
+                <a href="#" id="navitem-products">Gallery</a>               
+              </li>
+              <li class="nav-item mr-3 mt-2 mt-lg-0">
+                <a href="#" id="navitem-contact">Contact</a>
+              </li>
+              <li class="nav-item mr-3 mt-2 mt-lg-0">
+                <a href="#" id="navitem-faqs">FAQs</a>
+              </li>  
+            </ul>
+            <div class="d-none d-lg-block col-lg-3 ml-lg-4 p-0 mr-3">
+                {% include 'includes/search-box.html' %}
+              </div>
+          </div>
+          <hr class="d-lg-none">
+          <div class="container-fluid add-container bg-light d-none d-lg-block mb-lg-2 p-lg-0">
+            <div class="add container-fluid"><p class="mx-auto">Free delivery on orders over {{ free_delivery_threshold }}€</p></div>
+            <div class="add container-fluid text-center"><p class="mx-auto">Register and get a <span class="bg-skyblue">20% discount</span> voucher for your orders</p></div>  
+          </div>
+          <div class="container-fluid d-block d-lg-flex mb-lg-1">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+              <a class="logo d-none d-lg-flex justify-content-center justify-content-md-start align-items-end mb-2 mb-md-0" href="{% url 'home' %}">
+                <img class="col-3 " src="{{ MEDIA_URL }}logo.webp" alt="logo image">
+                <h2>Ringlee House Preschool</h2>  
+              </a>
+            </div>
+            {% if user.is_authenticated %}
+              {% if user.is_staff %}
+                <div class="col-12 col-md-3 col-lg-2 col-xl-1">
+                  <ul class="d-block d-lg-flex justify-content-end navigation">
+                    <li class="nav-item ml-lg-4  mt-2 mt-lg-0" id="adminManageNav">
+                      <div class="dropdown">
+                        <a title="Admin Manage" href="#"  data-toggle="dropdown" aria-expanded="false" id="navitem-admin">
+                          <span class="dropdown-toggle d-lg-none">Admin manage</span>
+                          <i class="fas fa-database d-none d-lg-block"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg-start">
+                          <hr class="dropdown-divider">
+                          <a class="dropdown-item" href="{% url 'admin_manage_orders' %}">Orders</a>  
+                          <a class="dropdown-item" data-toggle="modal" data-target="#addProductModal">Add a new product</a>
+                          <hr class="dropdown-divider d-none d-lg-block">
+                          <button class="dropdown-btn dropdown-item d-none d-lg-block" data-toggle="modal" data-target="#logoutModal">Logout</button>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="nav-item mb-2 mb-lg-0 ml-lg-4 mt-2 d-lg-none">
+                      <a data-toggle="modal" data-target="#logoutModal">
+                        <span>Logout</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              {% else %}
+                <div class="col-12 col-md-6 col-lg-3 col-xl-2">
+                  <ul class="d-block d-lg-flex justify-content-end navigation">
+                    <li class="nav-item  ml-lg-4  mt-2 mt-lg-0" id="userNav">
+                      <div class="dropdown">
+                        <a class="d-none d-lg-block" title="Account" href="#"  data-toggle="dropdown" aria-expanded="false" >
+                          <i class="fas fa-user-circle"></i>
+                        </a>
+                        <a class="d-lg-none" href="{% url 'profile' %}" id="navitem-profile">
+                          <span>My profile</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg-start">
+                          <a class="dropdown-item" href="#">My profile</a>
+                          <hr class="dropdown-divider  d-none d-lg-block">
+                          <button class="dropdown-item dropdown-btn" data-toggle="modal" data-target="#logoutModal">Logout</button>
+                        </div>
+                      </div>
+                    </li>
+                   
+                    <li class="nav-item mx-auto mb-2 mb-lg-0 mt-2 d-lg-none">
+                      <a href="{% url 'account_logout' %}" data-bs-toggle="modal" data-bs-target="#logoutModal">	
+                        <span>Logout</span>	
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              {% endif %}
+            {% else %}
+              <div class="col-12 col-md-6 col-lg-3 col-xl-2">
+                <ul class="d-block d-lg-flex justify-content-end navigation">
+                  <li class="nav-item ml-lg-4  mt-2 d-lg-none">	
+                    <a href="{% url 'account_login' %}" id="navitem-login">
+                      <span>Login</span>	
+                    </a>	
+                  </li>	
+                  <li class="nav-item ml-lg-4 mt-2 d-lg-none">	
+                    <a href="{% url 'account_signup' %}" id="navitem-signup">	
+                      <span>Register</span>	
+                    </a>	
+                  </li>	
+                  <li class="nav-item ml-lg-4 mt-2 mt-lg-0 d-none d-lg-block" id="userNav">
+                    <div class="dropdown">
+                      <a title="Account" href="#"  data-toggle="dropdown" aria-expanded="false" >
+                        <i class="fas fa-user-circle"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-lg-start">
+                          <hr class="dropdown-divider">
+                          <a class="dropdown-item" href="{% url 'account_login' %}" >Login</a>
+                          <a class="dropdown-item"  href="{% url 'account_signup' %}">Register</a>
+                      </div>
+                    </div>
+                  </li>
+                  
+                </ul>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="d-none d-md-block d-lg-none col-md-6 search-bar">
+          {% include 'includes/search-box.html' %}
+        </div>
+        <div class="d-md-none p-0 search-bar">
+          <div class="dropdown">
+            <button class="d-lg-none dropdown-btn" title="Search"  data-toggle="dropdown" aria-expanded="false" >
+              <i class="fas fa-search text-light"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-lg-start col-12">
+              {% include 'includes/search-box.html' %}
+            </div>
+          </div>
+        </div>
+      </nav>
+       <!-- Messages -->
+       {% if messages %}
+       <div class="message-container">
+        {% for message in messages %}
+            {% with message.level as level %}
+                {% if level == 40 %}
+                  {% if 'form_errors' not in message.tags %} 
+                    {% include 'includes/toasts/toast_error.html' %}
+                  {% endif %}
+                {% elif level == 30 %}
+                    {% include 'includes/toasts/toast_warning.html' %}
+                {% elif level == 25 %}
+                  {% if 'form_success' not in message.tags %} 
+                    {% if 'bag' in message.tags %} 
+                      {% include 'includes/toasts/toast_bag_success.html' %}
+                    {% else %}
+                      {% include 'includes/toasts/toast_success.html' %}
+                    {% endif %}
+                  {% endif %}
+                {% else %}
+                    {% include 'includes/toasts/toast_info.html' %}
+                {% endif %}
+            {% endwith %}
+        {% endfor %}
+    </div>
+   {% endif %}
+    </header>
+     <!-- LOGOUT MODAL -->
+     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header d-flex align-items-center">
+            <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
+            <button type="button" class="modal-close text-white" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to sign out?</p> 
+          </div>
+          <div class="modal-footer">
+            <form method="post" action="{% url 'account_logout' %}">
+              {% csrf_token %}
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+              {% endif %}
+              <button type="submit" class="button btn-secondary small-btn rounded-0">Yes</button>
+              <button type="button" class="button btn-secondary small-btn rounded-0" data-dismiss="modal">No</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% block page_header %} 
+    {% endblock %}   
+    <main class="flex-shrink-0 main-bg">
+      <div class="content-container min-vh">
+        {% if request.user.is_authenticated %}
+        <p hidden id="authStatus">authenticated</p>
+      {% else %}
+        <p hidden id="authStatus">neauthenticated</p>
+      {% endif %}
+      {% if request.user.is_superuser %}
+        <p hidden id="userType">admin</p>
+      {% else %}
+        <p hidden id="userType">client</p>
+      {% endif %}
+      {{ products_json|json_script:"products_data" }}
+      {% block content %} 
+      {% endblock %}
+      </div>
+    </main>
+     <!-- Footer -->
+     <footer class="footer pt-md-4 pb-4">
+      <div class="col-12 col-xl-11 mx-auto">
+              <div class="d-md-flex flex-row-reverse text-white">
+          <div class="col-12 pb-4 pb-md-0 col-md-6 text-center">
+            <div class="col-md-10 pt-4 p-md-0 mx-auto">
+              <h5 class="mb-4">Subscribe To Our Newsletter</h5>
+              <form method="POST" action="#" id="newsletter">
+                {% csrf_token %}
+                {{ add_subscriber_form.as_p }}
+                <div class="messages mb-2"> 
+                  {% if messages %}
+                    {% for message in messages %}
+                      {% if message.tags == 'form_errors error' %} 
+                        {{message}}
+                      {% elif message.tags == 'form_success success' %}
+                        <div class="success-message">
+                          {{message}}
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                </div>
+                <button type="submit" class="button small-btn gray-btn rounded-0" name="newsletter_submit_btn" value="{{request.path}}">Subscribe</button> 
+              </form>
+            </div>
+          </div>
+          <div class="col-10 pt-4 pt-md-0 col-md-6 mx-auto">
+            <div class="d-lg-flex justify-content-between col-md-10 p-0 mx-auto">
+              <div class="d-flex flex-column mb-3 mb-lg-0 text-center">
+                <a class="hover-underline text-white mb-1" href="#">Shop</a>
+                <a class="hover-underline text-white mb-1" href="#">FAQs</a>
+                <a class="hover-underline text-white mb-1" href="#">Contact</a>
+                <a class="hover-underline text-white mb-1" target="_blank" rel="noopener nofollow" href="https://www.privacypolicygenerator.info/live.php?token=B37swMu31DXNkTcTOmpC78CKxpwAvNsb">Privacy Policy</a>
+                <a class="hover-underline text-white" target="_blank" rel="noopener nofollow" href="https://www.termsandconditionsgenerator.com/live.php?token=x3tt2edgu1ClnnNlrgAxlSqqTmyCNyUW">Terms & Conditions</a>
+              </div>
+              <div class="text-center">
+                <p class="mb-0">Follow us on social media: </p>
+                <div class="d-flex justify-content-between text-center mb-2">
+                    <a href="https://www.facebook.com/profile.php?id=61553025716191" target="_blank" rel="noopener nofollow" aria-label="Link to facebook page"><i class="fab fa-facebook-square ms-3 "></i></a>
+                    <a href="https://www.twitter.com" target="_blank" rel="noopener nofollow" aria-label="Link to twitter page"><i class="fab fa-twitter-square ms-3"></i></a>
+                    <a href="https://www.instagram.com" target="_blank" rel="noopener nofollow" aria-label="Link to instagram page"><i class="fab fa-instagram-square ms-3"></i></a>
+                    <a href="https://www.youtube.com" target="_blank" rel="noopener nofollow" aria-label="Link to youtube page"><i class="fab fa-youtube-square ms-3"></i></a>
+                </div>
+                <p class="mb-0">Copyright &copy;2023 Ringlee House PreSchool. All rights reserved.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 text-center">
+            <div class="col-md-10 p-0 mx-auto">
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-    {% if messages %}
-        <div class="message-container"></div>
-    {% endif %}
+{% block corejs %}
+    <script src="https://kit.fontawesome.com/7141b35c3c.js" crossorigin="anonymous"></script> 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <!-- GOOGLEMAP-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqPYbsc_AYkhfB1O3c375GfAaYNcEiGIk&callback=initMap"></script>
+{% endblock %}
 
-    {% block page_header %}
-    {% endblock %}
-
-    {% block content %}
-    {% endblock %}
-
-    {% block postloadjs %}
-    {% endblock %}
-
-
+{% block extra_js %}
+{% endblock %}
+    
   </body>
 </html>
