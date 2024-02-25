@@ -15,6 +15,10 @@ a:hover {
     padding: 0 45px;
 }
 
+.min-vh {
+    min-height: 100vh;
+}
+
 header {
     position: fixed;   
     background-color: purple; 
@@ -137,48 +141,34 @@ input:focus, input:focus-visible{
     background-color: #5f003c;
 }
 
-/* Wiggle button class and animation */
-.wiggle-btn{
-    backface-visibility: hidden;
-    transform: translateZ(0px);
-    animation-duration: 5s;
-    animation-name: wiggle;
-    animation-play-state: running;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+.white-btn{
+    background-color: white;
+    border: 1px solid gray;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    color: #3a3a3a;
+    transition: all 0.2s ease-out;
+} 
+
+.white-btn a{
+    color: #3a3a3a;
 }
 
-@keyframes wiggle {
-    2% {
-        transform: translateX(3px) rotate(2deg);
-    }
-    4% {
-        transform: translateX(-3px) rotate(-2deg);
-    }
-    6% {
-        transform: translateX(3px) rotate(2deg);
-    }
-    8% {
-        transform: translateX(-3px) rotate(-2deg);
-    }
-    10% {
-        transform: translateX(2px) rotate(1deg);
-    }
-    12% {
-        transform: translateX(-2px) rotate(-1deg);
-    }
-    14% {
-        transform: translateX(2px) rotate(1deg);
-    }
-    16% {
-        transform: translateX(-2px) rotate(-1deg);
-    }
-    18% {
-        transform: translateX(1px) rotate(0deg);
-    }
-    20% {
-        transform: translateX(-1px) rotate(0deg);
-    }
+.white-btn:hover{
+    background-color: gray;
+    color: white;
+} 
+
+/* FORM ERRORS STYLING */
+.errorlist{
+    font-size: smaller;
+    font-weight: bold;
+    list-style-type: none;
+    color: #bd2130;
+    padding-left: 0px;
+}
+
+.errorlist li::before{
+    content: "* ";
 }
 
 body {
@@ -293,11 +283,11 @@ body {
   }
   /* --------------------------------- FOOTER STYLING ------------------------------- */
 
-  footer{
+  footer {
     background-color: #7c004f;
 }
 
-footer i{
+footer i {
     color: floralwhite;
     border: 2px solid transparent;
     padding: 8px;
@@ -305,11 +295,41 @@ footer i{
     transition: all 0.2s ease-out;
 }
 
-footer i:hover{
+footer i:hover { 
     border: 2px solid #fffaf08a;
 }
 
-i{
+footer .success-message {  
+    color: #79f37f;
+    font-size: smaller;
+    font-weight: bold;
+}
+
+footer .errorlist {
+    color: #ff4456;
+    margin-top: 0; 
+}
+
+footer > div > div > div:nth-child(1) form p{
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+footer > div > div > div:nth-child(1) form p input{
+    width: 100%;
+}
+
+footer > div > div > div:nth-child(1) form p label::before{
+    content: "*";
+    color: #ff0019;
+}
+
+footer > div > div > div:nth-child(1) form .messages{
+    height: 20px;
+}
+
+/* ICON STYLING */
+i {
     font-size: 20px;
 }
 
@@ -375,6 +395,15 @@ i{
 @media (max-width: 1200px) {
     .home-cover {
         height: 85vh;
+    }
+
+    .button:hover{
+        background-color: initial;
+        color: initial;
+    }
+
+    .message-container {
+        right: 31px;
     }
 }
 
