@@ -291,6 +291,27 @@ body {
         visibility: hidden
     }
   }
+  /* --------------------------------- FOOTER STYLING ------------------------------- */
+
+  footer{
+    background-color: #7c004f;
+}
+
+footer i{
+    color: floralwhite;
+    border: 2px solid transparent;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease-out;
+}
+
+footer i:hover{
+    border: 2px solid #fffaf08a;
+}
+
+i{
+    font-size: 20px;
+}
 
 /* ADD-CONTAINER STYLING */
 .add-container {
@@ -362,6 +383,10 @@ body {
     .p-side{
         padding: 0;
     }
+
+    .min-vh {
+        min-height: 90vh;
+    } 
 
 /* HEADER STYLING */
 
