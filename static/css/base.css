@@ -16,12 +16,27 @@ a:hover {
 }
 
 header {
-    position: sticky;   
+    position: fixed;   
     background-color: purple; 
     position: fixed;
-    background-color: #7c004f;
     width: 100%;
     z-index: 1024;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+}
+
+i:focus, i:focus-visible {
+    outline: none;
+    outline-offset: 0px;
+
+}
+a:focus, a:focus-visible {
+    outline: none;
+    outline-offset: 0px;
+}
+
+a,
+a:hover {
+    color: inherit;
 }
 
 /* ------------BUTTON CLASSES------- */
