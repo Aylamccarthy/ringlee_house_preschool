@@ -113,6 +113,12 @@ input:focus, input:focus-visible{
     border-color: unset;
     box-shadow: none;
 }
+
+/* BORDER CLASSES */
+.b-light-gray{
+    border: 1px solid #80808085;
+}
+
 /* ------------BUTTON CLASSES------- */
 .button{
     width: fit-content;
@@ -162,6 +168,31 @@ input:focus, input:focus-visible{
     background-color: #0e8814;
 }
 
+.gray-btn{
+    background-color: #bcbcbc;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    border: 1px solid  gray;
+
+}
+.gray-btn:hover{
+    background-color: gray;
+    color: white;
+}
+.small-btn{
+    padding: 5px 10px;
+}
+
+/* MAILCHIMP NEWSLETTER */
+#mc_embed_signup{
+    background:transparent;
+    clear:left; 
+}
+
+#mc_embed_signup .helper_text{
+    background-color: transparent;
+}
+
+
 /* FORM ERRORS STYLING */
 .errorlist{
     font-size: smaller;
@@ -169,10 +200,6 @@ input:focus, input:focus-visible{
     list-style-type: none;
     color: #bd2130;
     padding-left: 0px;
-}
-
-.errorlist li::before{
-    content: "* ";
 }
 
 /* LOGOUT MODAL STYLING */
@@ -453,6 +480,21 @@ i {
         min-height: 90vh;
     } 
 
+    .gray-btn:hover{
+        background-color: #bcbcbc;
+        color: initial;
+    }
+
+    .white-btn:hover{
+        background-color: white;
+        color: initial;
+    }
+
+    .purple-btn:hover{
+        background-color: #7c004f;
+    }
+
+
 /* HEADER STYLING */
 
     .navigation a, 
@@ -500,6 +542,29 @@ i {
 /* --------------------------------- SMALL DEVICES STYLING ------------------------------- */
 
 @media (max-width: 767.98px) {
+    footer > .col-12{
+        padding: 0px;
+    }
+
+    footer > div > div > div:nth-child(1){
+        background-color: #f0f0f0;
+        color: #3a3a3a;
+    }
+
+    footer .success-message{
+        color: #0e8814;
+        font-size: smaller;
+    }
+
+    footer .errorlist{
+        color: #bd2130;
+    }
+
+    footer > div > div > div:nth-child(1) form p label::before{
+        content: "*";
+        color:#bd2130;
+    }
+
         i {
             font-size: 25px;
         }
