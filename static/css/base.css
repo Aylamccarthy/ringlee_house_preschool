@@ -158,6 +158,10 @@ input:focus, input:focus-visible{
     color: white;
 } 
 
+.green-btn{
+    background-color: #0e8814;
+}
+
 /* FORM ERRORS STYLING */
 .errorlist{
     font-size: smaller;
@@ -169,6 +173,33 @@ input:focus, input:focus-visible{
 
 .errorlist li::before{
     content: "* ";
+}
+
+/* LOGOUT MODAL STYLING */
+#logoutModal .modal-content{
+    border: 2px solid white;
+}
+
+#logoutModal .modal-header{
+    background-color: #5f003c;
+    color: white;
+    padding: 8px 16px;
+}
+#logoutModal .modal-footer{
+    padding: 8px 16px;
+}
+
+#logoutModal .modal-close{
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    padding: 0;
+}
+
+#logoutModal .modal-close span:hover{
+    color: #d0cbcb;
 }
 
 body {
@@ -284,7 +315,7 @@ body {
   /* --------------------------------- FOOTER STYLING ------------------------------- */
 
   footer {
-    background-color: #7c004f;
+    background-color: #62d9dd;
 }
 
 footer i {
@@ -356,25 +387,30 @@ i {
     animation-delay: 3s;
 }
 
+/* SEARCH BAR STYLING */
 .search-bar .form-control {
     height: 30px;
 }
 
+.search-bar label {
+    width: inherit;
+}
 
 .search-bar .btn {
     background-color: #b4b3b5;
     border: 1px solid #b4b3b5;
     padding: 0;
     width: 35px;
-}
-
-.search-bar i {
-    margin-top: 6px;
+    margin-left: -5px;
 }
 
 .search-bar .btn:hover {
     background-color: #a4a4a4;
     border: 1px solid #a4a4a4
+}
+
+.search-bar i {
+    margin-top: 5px;
 }
 
 .search-bar .dropdown {
@@ -386,7 +422,7 @@ i {
     width: 100%;
     position: absolute;
     top: 90%;
-    background-color: purple;
+    background-color: #590243;
     border-radius: 0%;
 }
 
